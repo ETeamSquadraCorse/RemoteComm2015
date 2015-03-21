@@ -4,9 +4,9 @@
 #include <unistd.h>
 #include <time.h>
 
-using namespace std;
+#include "../common/constants.h"
 
-const unsigned int data_to_be_received = 10;
+using namespace std;
 
 const char FILENAMEVOICE[] = "FIFOVoice";
 const char FILENAMEDATA[] = "FIFOData";
@@ -15,16 +15,16 @@ pthread_mutex_t mutexCout = PTHREAD_MUTEX_INITIALIZER;
 
 void *dataThreadBody(void *arg)
 {
-    char line[data_to_be_received+1];
+    char line[CAR_DATA_BLOCK_SIZE + 1];
     ifstream datafs;
 
     for (;;) {
         datafs.open(FILENAMEDATA, ifstream::in);
 
         while (datafs.good()) {
-            datafs.get(line, data_to_be_received);
+            datafs.get(line, CAR_DATA_BLOCK_SIZE);
             pthread_mutex_lock(&mutexCout);
-            cout << 1 << ':' << line << endl;
+            cout << CAR_DATA_BLOCK_ID << ':' << line << endl;
             pthread_mutex_unlock(&mutexCout);
         }
 
@@ -34,16 +34,16 @@ void *dataThreadBody(void *arg)
 
 void *voiceThreadBody(void *arg)
 {
-    char line[data_to_be_received+1];
+    char line[AUDIO_BLOCK_SIZE + 1];
     ifstream voicefs;
 
     for (;;) {
         voicefs.open(FILENAMEVOICE, ifstream::in);
 
         while (voicefs.good()) {
-            voicefs.get(line, data_to_be_received);
+            voicefs.get(line, AUDIO_BLOCK_SIZE);
             pthread_mutex_lock(&mutexCout);
-            cout << 0 << ':' << line << endl;
+            cout << AUDIO_BLOCK_ID << ':' << line << endl;
             pthread_mutex_unlock(&mutexCout);
         }
 
