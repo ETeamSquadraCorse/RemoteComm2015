@@ -9,4 +9,9 @@
 # The data is then inserted in the FIFOVoice FIFO
 # pipeline file.
 
+while [ ! -e FIFOVoice ]
+do
+  sleep 1
+done
+
 ./MFilter.out
