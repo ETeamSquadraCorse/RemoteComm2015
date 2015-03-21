@@ -1,19 +1,19 @@
 CC = g++
 CFLAGS = -Wall
 LDFLAGS = -lpthread
-OBJECTS = $(SOURCES:.cpp=.o)
 
-all: Multiplexer MFilter
+all: Multiplexer.out MFilter.out
 
-Multiplexer: Multiplexer.cpp
+Multiplexer.out: Multiplexer.cpp
 	$(CC) $(CFLAGS) -o $@ $< $(LDFLAGS)
 
-MFilter: MFilter.cpp
+MFilter.out: MFilter.cpp
 	$(CC) $(CFLAGS) -o $@ $< $(LDFLAGS)
 
 clean:
-	rm -rf Multiplexer
-	rm -rf MFilter
+	rm -rf Multiplexer.out
+	rm -rf MFilter.out
 	rm -rf FIFOData
 	rm -rf FIFOVoice
 	rm -rf *.o
+

@@ -20,4 +20,4 @@ fi
 echo "Creating FIFOData node"
 mknod FIFOData p
 
-./Multiplexer
+./Multiplexer.out

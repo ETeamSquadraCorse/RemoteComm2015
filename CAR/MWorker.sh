@@ -9,4 +9,4 @@
 # The data is then inserted in the FIFOVoice FIFO
 # pipeline file.
 
-./MFilter > FIFOVoice
+./MFilter.out > FIFOVoice
