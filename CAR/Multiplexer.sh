@@ -21,4 +21,3 @@ echo "Creating FIFOData node"
 mknod FIFOData p
 
 ./Multiplexer
-# Sends the data to a compression unit
