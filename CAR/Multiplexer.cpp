@@ -8,9 +8,6 @@
 
 using namespace std;
 
-const char FILENAMEVOICE[] = "FIFOVoice";
-const char FILENAMEDATA[] = "FIFOData";
-
 pthread_mutex_t mutexCout = PTHREAD_MUTEX_INITIALIZER;
 
 void *dataThreadBody(void *arg)
